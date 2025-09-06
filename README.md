@@ -1,9 +1,3 @@
-Got it ✅
-Since I know your project has **Bronze, Silver, and Gold layers** with stored procedures, transformations, and business-friendly models, I’ll draft a professional **README.md** for your GitHub repository.
-
-Here’s a polished version 👇
-
----
 
 # 🏗️ Data Warehouse Project
 
@@ -29,7 +23,10 @@ The repository contains scripts for:
  ┣ 📜 silver_load.sql        # Procedures for cleaning & transforming data
  ┣ 📜 gold_views.sql         # Views for business-friendly dimensions & facts
  ┣ 📂 datasets/              # Source CSV files (CRM, ERP)
- ┗ 📂 docs/                  # Documentation & design notes
+ ┣ 📂 docs/                  # Documentation & design notes
+ ┃ ┣ 📊 data_flow.png
+ ┃ ┣ 🏗️ data_architecture.png
+ ┃ ┗ 🔗 layer_relationships.png
 ```
 
 ---
@@ -86,22 +83,21 @@ WITH (FIRSTROW = 2, FIELDTERMINATOR = ',', TABLOCK);
 * Fact table joins dimensions via natural/business keys.
 * Only **current data** is retained (historical data filtered out).
 
-Example:
+---
 
-```sql
-CREATE VIEW gold.fact_sales AS
-SELECT 
-   sd.sls_ord_num AS order_number,
-   pr.product_key,
-   cu.customer_key,
-   sd.sls_order_dt AS order_date,
-   sd.sls_sales AS sales_amount
-FROM silver.crm_sales_details sd
-LEFT JOIN gold.dim_products pr
-  ON sd.sls_prd_key = pr.product_number
-LEFT JOIN gold.dim_customers cu
-  ON sd.sls_cust_id = cu.customer_id;
-```
+## 🖼️ Visuals
+
+### 📊 Data Flow
+
+![Data Flow](docs/data_flow.png)
+
+### 🏗️ Data Architecture
+
+![Data Architecture](docs/data_architecture.png)
+
+### 🔗 Layer Relationships
+
+![Layer Relationships](docs/layer_relationships.png)
 
 ---
 
@@ -126,6 +122,7 @@ LEFT JOIN gold.dim_customers cu
 ✔️ Unified and consistent data model.
 ✔️ Reliable reporting with clean dimensions & facts.
 ✔️ Audit-friendly with batch tracking.
+✔️ Visualized data architecture for better understanding.
 ✔️ Flexible design for future scalability.
 
 ---
@@ -136,8 +133,4 @@ This project is licensed under the **MIT License** – see the [LICENSE](LICENSE
 
 ---
 
-⚡ Pro Tip: Add **ER diagrams, architecture diagram, or sample query screenshots** in a `docs/` folder to make your GitHub repo even more impressive.
 
----
-
-Do you want me to also **design an ER diagram / architecture diagram** for your README (I can generate it as an image) so your repo looks more professional?
